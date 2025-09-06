@@ -1,3 +1,5 @@
+import { withContentlayer } from 'next-contentlayer'
+
 const nextConfig = {
   transpilePackages: ['@devdoc/core', '@devdoc/ui'],
   webpack: (config, { isServer }) => {
@@ -11,4 +13,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withContentlayer(nextConfig);

@@ -13,14 +13,11 @@ export type Doc = {
   _id: string
   _raw: Local.RawDocumentData
   type: 'Doc'
-  /** The title of the document */
   title: string
-  /** The description of the document */
   description?: string | undefined
   /** MDX file body */
   body: MDX
   url: string
-  slugAsParams: string
 }  
 
 /** Nested types */

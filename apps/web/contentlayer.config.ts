@@ -1,34 +1,37 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-export const Doc = defineDocumentType(() => ({
+const Doc = defineDocumentType(() => ({
   name: 'Doc',
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `docs/**/*.mdx`,
   contentType: 'mdx',
   fields: {
     title: {
       type: 'string',
-      description: 'The title of the document',
       required: true,
     },
     description: {
       type: 'string',
-      description: 'The description of the document',
-      required: false,
     },
   },
   computedFields: {
     url: {
       type: 'string',
-      resolve: (doc) => `/${doc._raw.flattenedPath}`,
-    },
-    slugAsParams: {
-        type: 'string',
-        resolve: (doc) => doc._raw.flattenedPath.split('/').slice(1).join('/'),
+      resolve: (doc) => `/docs/${doc._raw.flattenedPath.replace('docs/', '')}`,
     },
   },
-}))
+}));
 
 export default makeSource({
-  contentDirPath: 'docs',
+  contentDirPath: 'content',
   documentTypes: [Doc],
-})
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+    ],
+  },
+});

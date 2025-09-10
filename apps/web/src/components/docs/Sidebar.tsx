@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Import usePathname
 import { allDocs } from 'contentlayer/generated';
 import { Search, ChevronDown, LayoutGrid, Sun } from 'lucide-react';
+import FrameworkDropdown from './sidebar-dropdown-menu';
+import { DropdownMenu } from '@/components/ui/dropdown-menu';
 
 // Helper function to build a hierarchical page tree from a flat list of documents
 function buildPageTree(docs: any[]) {
@@ -66,22 +68,30 @@ const renderTree = (nodes: any, path = '/docs') => {
 const Sidebar: React.FC = () => {
   return (
     <aside className="w-72 p-4 bg-gray-950 border-r border-gray-800 h-full overflow-y-auto flex flex-col">
-      <div className="flex items-center gap-2 mb-4">
-        <Search className="size-4 text-gray-500" />
+      
+      <div className="flex items-center justify-between mb-4 mt-4">
+        <Link href="/" className="text-xl font-bold">
+          Devdocs
+        </Link>
+        <button className="p-2 rounded-lg hover:bg-gray-700">
+          <Sun className="size-5 text-gray-300" />
+        </button>
+      </div>
+      
+      <div className="relative flex items-center mb-4">
+        <Search className="absolute left-2 size-4 text-gray-500" />
         <input
           type="text"
           placeholder="Search..."
-          className="flex-1 py-1.5 px-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 py-1.5 pl-8 pr-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <span className="text-sm text-gray-500">Ctrl K</span>
+        <span className="ml-2 text-sm text-gray-500">Ctrl K</span>
       </div>
 
       <div className="mb-6">
-        <button className="flex items-center justify-between w-full p-2 rounded-lg bg-blue-600 text-white font-semibold">
-          <LayoutGrid className="size-5" />
-          Framework
-          <ChevronDown className="size-4" />
-        </button>
+        {/* <DropdownMenu> */}
+          <FrameworkDropdown />
+        {/* </DropdownMenu> */}
       </div>
 
       <nav className="flex-1">
@@ -90,12 +100,10 @@ const Sidebar: React.FC = () => {
       </nav>
 
       <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-800">
-        <Link href="https://github.com/your-repo" className="text-gray-400 hover:text-gray-300">
+        <Link href="https://github.com/yashdev9274/devdocs" className="text-gray-400 hover:text-gray-300">
           GitHub
         </Link>
-        <button className="p-2 rounded-lg hover:bg-gray-800">
-          <Sun className="size-5 text-gray-300" />
-        </button>
+        
       </div>
     </aside>
   );

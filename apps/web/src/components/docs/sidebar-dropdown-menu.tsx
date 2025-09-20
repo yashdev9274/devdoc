@@ -19,8 +19,8 @@ import {
    return (
      <DropdownMenu>
        <DropdownMenuTrigger asChild>
-         <Button variant="ghost" className="flex items-center justify-between w-full p-2 rounded-lg bg-gray-800 text-white font-semibold hover:bg-gray-700">
-           Framework
+         <Button variant="ghost" className="flex items-center justify-between w-full p-2 rounded-lg bg-gray-800 text-white font-semibold hover:bg-gray-700 ">
+           Document
            <ChevronDownIcon
              className="-me-1 opacity-60"
              size={16}

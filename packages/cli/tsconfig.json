@@ -5,7 +5,8 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "module": "CommonJS",
-    "noEmit": false
+    "noEmit": false,
+    "noImplicitAny": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

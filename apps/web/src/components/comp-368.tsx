@@ -1,5 +1,5 @@
 import {
-  BoltIcon,
+  ZapIcon,
   ChevronDownIcon,
   CopyPlusIcon,
   FilesIcon,
@@ -33,7 +33,7 @@ export default function Component() {
           Copy
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <BoltIcon size={16} className="opacity-60" aria-hidden="true" />
+          <ZapIcon size={16} className="opacity-60" aria-hidden="true" />
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem>

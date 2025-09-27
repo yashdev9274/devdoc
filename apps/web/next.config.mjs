@@ -1,6 +1,8 @@
 import { withContentlayer } from 'next-contentlayer';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  transpilePackages: ["@devdoc/ui"]
+};
 
 export default withContentlayer(nextConfig);

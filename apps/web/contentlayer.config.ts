@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { mdxComponents } from './src/components/mdx-components';
 
 const Doc = defineDocumentType(() => ({
   name: 'Doc',

@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { allDocs } from 'contentlayer/generated';
-import { getMDXComponent } from 'next-contentlayer/hooks';
-// import DocsLayout from '../layout';
+import { Mdx } from '@/components/mdx-components';
 
 interface PageProps {
   params: {
@@ -27,14 +26,15 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  const MdxContent = getMDXComponent(doc.body.code);
-
   return (
-      <article className="prose dark:prose-invert">
-        <h1>{doc.title}</h1>
-        {doc.description && <p className="lead">{doc.description}</p>}
-        <hr />
-        <MdxContent />
-      </article>
+    <>
+      <h1 className="text-3xl font-bold tracking-tight mb-4">{doc.title}</h1>
+      {doc.description && (
+        <p className="text-lg text-muted-foreground mb-8">{doc.description}</p>
+      )}
+      <div className="prose prose-gray dark:prose-invert max-w-none">
+        <Mdx code={doc.body.code} />
+      </div>
+    </>
   );
 }

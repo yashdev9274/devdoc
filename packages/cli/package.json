@@ -16,7 +16,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "@devdoc/ui": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.3.3",

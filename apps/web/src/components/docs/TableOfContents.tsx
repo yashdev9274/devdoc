@@ -46,14 +46,14 @@ const TableOfContents: React.FC = () => {
 
   return (
     <div className="sticky top-20 w-64 p-4 -mt-8 text-sm hidden xl:block">
-      <h3 className="text-sm font-semibold mb-3 text-gray-900 dark:text-white">On this page</h3>
+      <h3 className="text-sm font-semibold mb-3 text-foreground">On this page</h3>
       <nav>
         <ul>
           {headings.map((heading) => (
             <li key={heading.id} className="mb-2">
               <a
                 href={`#${heading.id}`}
-                className={`text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 block ${activeId === heading.id ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''} `}
+                className={`text-muted-foreground hover:text-foreground block transition-colors ${activeId === heading.id ? 'text-primary font-semibold' : ''} `}
                 style={{ marginLeft: `${(heading.level - 1) * 10}px` }}
               >
                 {heading.text}

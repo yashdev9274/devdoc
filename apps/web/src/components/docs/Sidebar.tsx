@@ -4,9 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Import usePathname
 import { allDocs } from 'contentlayer/generated';
-import { Search, ChevronDown, LayoutGrid, Sun } from 'lucide-react';
+import { Search, ChevronDown, LayoutGrid, Sun, ChevronLeft } from 'lucide-react';
 import FrameworkDropdown from './sidebar-dropdown-menu';
 import { DropdownMenu } from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 // Helper function to build a hierarchical page tree from a flat list of documents
 function buildPageTree(docs: any[]) {
@@ -65,7 +66,7 @@ const renderTree = (nodes: any, path = '/docs') => {
   });
 };
 
-const Sidebar: React.FC = () => {
+export function Sidebar ({onClose}:{onClose? :()=> void})  {
   return (
     <aside className="w-72 p-4 bg-sidebar border-r border-sidebar-border h-full overflow-y-auto flex flex-col hidden lg:flex">
       
@@ -76,16 +77,43 @@ const Sidebar: React.FC = () => {
         <button className="p-2 rounded-lg hover:bg-gray-700">
           <Sun className="size-5 text-gray-300" />
         </button>
+        <div className="ml-auto">
+          <button
+            type="button"
+            onClick={onClose}
+            className={cn(
+              "inline-flex size-8 items-center justify-center rounded-md",
+              "hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+            )}
+            aria-label="Collapse sidebar"
+            title="Collapse"
+          >
+            <ChevronLeft className="size-4" />
+            
+          </button>
+        </div>
       </div>
       
-      <div className="relative flex items-center mb-4">
-        <Search className="absolute left-2 size-4 text-gray-500" />
-        <input
-          type="text"
-          placeholder="Search..."
-          className="flex-1 py-1.5 pl-8 pr-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        {/* <span className="ml-2 text-sm text-gray-500">Ctrl K</span> */}
+      <div className="mb-5">
+        <div className="group relative">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            aria-label="Search docs"
+            placeholder="Search"
+            className={cn(
+              "w-full rounded-md border border-sidebar-border bg-secondary pl-9 pr-16 py-2 text-sm",
+              "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+            )}
+          />
+          <kbd
+            className={cn(
+              "pointer-events-none absolute right-2 top-1/2 -translate-y-1/2",
+              "rounded border border-sidebar-border bg-muted px-2 py-0.5 text-[10px] text-muted-foreground",
+            )}
+          >
+            Ctrl K
+          </kbd>
+        </div>
       </div>
 
       <div className="mb-6">

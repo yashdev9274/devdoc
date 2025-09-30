@@ -13,31 +13,14 @@ interface DocLayoutProps {
 }
 
 export function DocsLayout({ children }: PropsWithChildren){
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const {open, toggle, openSidebar, closeSidebar} = useSidebar()
+  const {open, toggle, openSidebar, closeSidebar, peeking, onMouseEnter, onMouseLeave} = useSidebar()
 
-  const [peeking, setPeeking] = useState(false);
   return (
-    <div className="flex h-screen bg-background">
-      {/* Mobile sidebar overlay */}
-      {/* {sidebarOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setSidebarOpen(false)} />
-          <div className="fixed left-0 top-0 h-full w-72">
-            <Sidebar />
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="absolute top-4 right-4 p-2 rounded-lg bg-background border"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      )} */}
+    <div className="flex bg-background">
 
       <div className="relative flex min-h-div">
-        {!open && <CollapsedControls onOpen={openSidebar}/>} 
+        {!open && !peeking && <CollapsedControls onOpen={openSidebar}/>} 
 
         <div 
           className={cn(
@@ -62,8 +45,8 @@ export function DocsLayout({ children }: PropsWithChildren){
       {!open && (
         <div
           className="fixed left-0 top-0 z-40 h-dvh w-6 lg:w-8"
-          onMouseEnter={()=>setPeeking(true)}
-          onMouseLeave={()=>setPeeking(false)}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           aria-hidden="true"
         />
       )}
@@ -74,8 +57,8 @@ export function DocsLayout({ children }: PropsWithChildren){
               "pointer-events-none fixed left-0 top-0 z-50 h-dvh w-72 -translate-x-full transition-transform duration-200 ease-out",
               peeking && "pointer-events-auto translate-x-0",
             )}
-            onMouseEnter={() => setPeeking(true)}
-            onMouseLeave={() => setPeeking(false)}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
           >
             <div className="h-full border-r border-sidebar-border bg-sidebar text-sidebar-foreground shadow-xl">
               <Sidebar onClose={closeSidebar} />

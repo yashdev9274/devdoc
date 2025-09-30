@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const MdxIconComponents = {
   FileText: dynamic(() => import("lucide-react").then((mod) => mod.FileText)),
   Folder: dynamic(() => import("lucide-react").then((mod) => mod.Folder)),
-  CommandIcon: dynamic(() => import("lucide-react").then((mod) => mod.CommandIcon)),
+  Terminal: dynamic(() => import("lucide-react").then((mod) => mod.Terminal)),
 };
 
 interface MdxProps {

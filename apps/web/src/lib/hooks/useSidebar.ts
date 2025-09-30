@@ -35,6 +35,9 @@ export function useSidebar(defaultOpen?: boolean){
 
    const closeSidebar = useCallback(()=> setOpen(false), [])
 
+   const [peeking, setPeeking] = useState(false)
+
+
 
    // keyboard shortcut- ctrl+B to trigger sidebar, ctrl+k for search
 
@@ -61,5 +64,15 @@ export function useSidebar(defaultOpen?: boolean){
       window.addEventListener("keydown", onKey)
       return () => window.removeEventListener("keydown", onKey)
    }, [toggle])
-   return{open, toggle, openSidebar, closeSidebar}
+
+
+   const onMouseEnter = useCallback(() => {
+      if (!open) setPeeking(true)
+    }, [open])
+  
+    const onMouseLeave = useCallback(() => {
+      if (!open) setPeeking(false)
+    }, [open])
+
+   return{open, toggle, openSidebar, closeSidebar, peeking, onMouseEnter, onMouseLeave}
 }

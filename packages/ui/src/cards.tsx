@@ -1,4 +1,4 @@
-import { Folder, FileText, Blocks, CommandIcon } from "lucide-react";
+import { Folder, FileText, Blocks, Terminal } from "lucide-react";
 
 interface CardProps {
   icon: React.ReactNode;

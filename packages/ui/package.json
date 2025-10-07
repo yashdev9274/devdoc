@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react --tsconfig tsconfig.build.json"
+    "build": "pnpm exec tsup src/index.ts --format esm,cjs --dts --external react --tsconfig tsconfig.build.json"
   },
   "peerDependencies": {
     "react": "^19.1.0",

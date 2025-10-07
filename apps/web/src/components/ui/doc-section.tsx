@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import type React from "react"
+import Image from "next/image"
 
 // Badge component for consistency
 function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
@@ -23,17 +24,17 @@ export default function DocumentationSection() {
     {
       title: "Getting Started",
       description: "Learn how to set up and configure Devdocs for your project.",
-      image: "/modern-dashboard-interface-with-data-visualization.jpg",
+      image: "/previewImg.png",
     },
     {
       title: "Customization",
       description: "Customize the look and feel of your documentation to match your brand.",
-      image: "/analytics-dashboard.png",
+      image: "/previewImg.png",
     },
     {
       title: "Deploying",
       description: "Deploy your documentation to your favorite hosting provider.",
-      image: "/team-collaboration-interface-with-shared-workspace.jpg",
+      image: "/previewImg.png",
     },
   ]
 
@@ -115,15 +116,19 @@ export default function DocumentationSection() {
           {/* Right Column - Image */}
           <div className="w-full md:w-auto rounded-lg flex flex-col justify-center items-center gap-2 order-1 md:order-2 md:px-0 px-[00]">
             <div className="w-full md:w-[580px] h-[250px] md:h-[420px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-lg flex flex-col justify-start items-start">
-              <div
-                className={`w-full h-full transition-all duration-300 ${
-                  activeCard === 0
-                    ? "bg-gradient-to-br from-blue-50 to-blue-100"
-                    : activeCard === 1
-                      ? "bg-gradient-to-br from-purple-50 to-purple-100"
-                      : "bg-gradient-to-br from-green-50 to-green-100"
-                }`}
-              />
+              <div className="w-full h-full relative">
+                {cards.map((card, index) => (
+                  <Image
+                    key={index}
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className={`object-contain transition-opacity duration-500 ease-in-out ${
+                      activeCard === index ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

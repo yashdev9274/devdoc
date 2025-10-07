@@ -544,7 +544,7 @@ export default function Home() {
               <DocumentationSection />
 
               {/* Testimonials Section */}
-              <TestimonialsSection />
+              {/* <TestimonialsSection /> */}
 
               {/* Pricing Section */}
               <PricingSection />

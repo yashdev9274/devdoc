@@ -9,14 +9,17 @@ interface PageProps {
 }
 
 async function getDocFromParams(params: PageProps['params']) {
-  const slug = params.slug?.join('/') || 'introduction'; // Default to 'introduction'
-  const doc = allDocs.find((doc) => doc._raw.flattenedPath === `docs/${slug}`);
-
-  if (!doc) {
-    return null;
+  const slug = params.slug?.join('/') || 'introduction';
+  
+  if (slug === 'introduction') {
+    return allDocs.find((doc) => doc._raw.flattenedPath === 'docs/introduction/introduction') || null;
   }
 
-  return doc;
+  const doc = allDocs.find(
+    (doc) => doc._raw.flattenedPath.toLowerCase() === `docs/${slug.toLowerCase()}`
+  );
+
+  return doc || null;
 }
 
 export default async function Page({ params }: PageProps) {

@@ -15,6 +15,7 @@ export type Doc = {
   type: 'Doc'
   title: string
   description?: string | undefined
+  order?: number | undefined
   /** MDX file body */
   body: MDX
   url: string

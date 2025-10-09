@@ -13,7 +13,10 @@ import { cn } from '@/lib/utils';
 function buildPageTree(docs: any[]) {
   const tree: any = { children: {} };
 
-  docs.forEach(doc => {
+  // Sort docs by order if available
+  const sortedDocs = docs.sort((a, b) => (a.order || 999) - (b.order || 999));
+
+  sortedDocs.forEach(doc => {
     const pathParts = doc._raw.flattenedPath.split('/').slice(1); // Remove 'docs/' prefix
     let currentLevel = tree;
 
@@ -36,7 +39,13 @@ const pageTree = buildPageTree(allDocs);
 const renderTree = (nodes: any, path = '/docs') => {
   const pathname = usePathname(); // Get current pathname
 
-  return Object.entries(nodes).map(([key, value]: [string, any]) => {
+  const sortedNodes = Object.entries(nodes).sort(([, a]: [string, any], [, b]: [string, any]) => {
+    const orderA = a.doc?.order || (a.children ? Object.values(a.children).reduce((acc: number, child: any) => Math.min(acc, child.doc?.order || 999), 999) : 999);
+    const orderB = b.doc?.order || (b.children ? Object.values(b.children).reduce((acc: number, child: any) => Math.min(acc, child.doc?.order || 999), 999) : 999);
+    return orderA - orderB;
+  });
+
+  return sortedNodes.map(([key, value]: [string, any]) => {
     const currentPath = `${path}/${key}`;
     const hasChildren = Object.keys(value.children).length > 0;
     const isActive = value.doc && pathname === value.doc.url; // Check if link is active
@@ -44,7 +53,15 @@ const renderTree = (nodes: any, path = '/docs') => {
     if (value.doc) {
       return (
         <li key={key} className="mb-1">
-          <Link href={value.doc.url} className={`flex items-center gap-2 p-2 rounded-lg ${isActive ? 'bg-sidebar-primary text-sidebar-primary-foreground' : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'}`}>
+                    <Link
+            href={value.doc.url}
+            className={cn(
+              "flex items-center gap-2 p-2 rounded-lg",
+              isActive
+                ? "bg-zinc-800 text-green font-semibold"
+                : "text-sidebar-foreground hover:bg-zinc-700"
+            )}
+          >
             {value.doc.title}
           </Link>
         </li>
@@ -52,10 +69,7 @@ const renderTree = (nodes: any, path = '/docs') => {
     } else if (hasChildren) {
       return (
         <li key={key} className="mt-4 mb-2">
-          <button className="flex items-center justify-between w-full p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground font-semibold">
-            {key}
-            <ChevronDown className="size-4 text-muted-foreground" />
-          </button>
+          <h4 className="font-semibold mb-2 text-sm capitalize">{key}</h4>
           <ul className="ml-4 mt-1">
             {renderTree(value.children, currentPath)}
           </ul>
@@ -123,7 +137,6 @@ export function Sidebar ({onClose}:{onClose? :()=> void})  {
       </div>
 
       <nav className="flex-1">
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase mb-3">Introduction</h3>
         <ul>{renderTree(pageTree)}</ul>
       </nav>
 

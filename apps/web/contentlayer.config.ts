@@ -16,6 +16,10 @@ const Doc = defineDocumentType(() => ({
     description: {
       type: 'string',
     },
+    order: {
+      type: 'number',
+      required: false,
+    },
   },
   computedFields: {
     url: {

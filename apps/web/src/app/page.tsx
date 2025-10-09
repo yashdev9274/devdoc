@@ -126,7 +126,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex justify-start items-center">
-                      <Link href="/docs">
+                      <Link href="/docs/introduction/quickstart">
                         <div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans">
                           Docs
                         </div>
@@ -169,7 +169,7 @@ export default function Home() {
 
               <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
                 <a
-                  href="/docs"
+                  href="/docs/introduction/quickstart"
                   className="backdrop-blur-[8.25px] h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full
                              flex justify-center items-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans"
                 >

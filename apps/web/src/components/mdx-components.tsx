@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { Cards, Card } from '../../../../packages/ui/src/cards'

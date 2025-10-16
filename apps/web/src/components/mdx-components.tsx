@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { Cards, Card } from '../../../../packages/ui/src/cards'
+import { CodeBlock, CodePanel, CodeBlocktwo } from '../../../../packages/ui/src/code-block'
 import dynamic from "next/dynamic";
 
 const MdxIconComponents = {
@@ -20,7 +21,7 @@ export function Mdx({ code }: MdxProps) {
 
   return (
     <div className="mdx-content">
-      <Component components={{ ...mdxComponents, Blocks: Cards, Card, Cards, ...MdxIconComponents }} />
+      <Component components={{ ...mdxComponents, Blocks: Cards, Card, Cards, ...MdxIconComponents, CodeBlock, CodePanel, CodeBlocktwo }} />
     </div>
   )
 }

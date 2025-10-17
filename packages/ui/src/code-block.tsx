@@ -117,7 +117,7 @@ function CodePanel({
 }
 
 function CodeBlocktwo() {
-  const configJs = `import createMDX from 'fumadocs-mdx/config';
+  const configJs = `import createMDX from 'Devdocs-mdx/config';
 
 const withMDX = createMDX();
 
@@ -128,9 +128,9 @@ const config = {
 
 export default withMDX(config);`
 
-  const mdxUsage = `import defaultComponents from 'fumadocs-ui/mdx';
+  const mdxUsage = `import defaultComponents from 'Devdocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
-import { CodeBlock, Pre } from 'fumadocs-ui/components/codeblock';
+import { CodeBlock, Pre } from 'Devdocs-ui/components/codeblock';
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -145,7 +145,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
   };
 }`
 
-  const keepBg = `import { Pre, CodeBlock } from 'fumadocs-ui/components/codeblock';
+  const keepBg = `import { Pre, CodeBlock } from 'Devdocs-ui/components/codeblock';
 
 <CodeBlock keepBackground {...props}>
   <Pre>{props.children}</Pre>
@@ -153,10 +153,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
   const iconJs = `console.log('js');`
 
-  const npm = `npm create fumadocs-app`
-  const pnpm = `pnpm dlx create-fumadocs-app`
-  const yarn = `yarn create fumadocs-app`
-  const bun = `bun create fumadocs-app`
+  const npm = `npm create Devdocs-app`
+  const pnpm = `pnpm dlx create-Devdocs-app`
+  const yarn = `yarn create Devdocs-app`
+  const bun = `bun create Devdocs-app`
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-10 text-foreground">
@@ -169,19 +169,11 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       </section>
 
       {/* Install to your codebase */}
-      <section className="mt-8">
+      <section className="mt-8 mb-9">
         <div className="rounded-xl border border-gray-700/60 bg-black/30 p-4">
           <div className="flex items-center justify-between">
             <h3 className="font-medium text-gray-200">Install to your codebase</h3>
-            <div className="text-sm text-blue-400">
-              <a href="#" className="hover:underline">
-                Fumadocs CLI
-              </a>{" "}
-              ·{" "}
-              <a href="#" className="hover:underline">
-                Shadcn CLI
-              </a>
-            </div>
+            
           </div>
 
           <div className="mt-4">
@@ -210,7 +202,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       </section>
 
       {/* Intro text and callout */}
-      <section className="mt-10 space-y-4">
+      <section className="mt-10 space-y-9">
         {/* <p className="text-gray-300">
           This is an MDX component meant to be used with{" "}
           <a href="#" className="text-blue-400 hover:underline">

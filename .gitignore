@@ -23,6 +23,9 @@ out/
 *.swp
 *.swo
 
+# env
+.env
+
 # Logs
 logs/
 *.log

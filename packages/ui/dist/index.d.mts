@@ -27,5 +27,12 @@ declare const CodeBlock: ({ code, lang, }: {
     code: string;
     lang?: string;
 }) => react_jsx_runtime.JSX.Element;
+declare function CodePanel({ code, fileLabel, lang, className, }: {
+    code: string;
+    fileLabel?: string;
+    lang?: string;
+    className?: string;
+}): react_jsx_runtime.JSX.Element;
+declare function CodeBlocktwo(): react_jsx_runtime.JSX.Element;
 
-export { Button, type ButtonProps, Card, Cards, CodeBlock, buttonVariants };
+export { Button, type ButtonProps, Card, Cards, CodeBlock, CodeBlocktwo, CodePanel, buttonVariants };
